@@ -1,0 +1,164 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-12-04T15:34:50.898Z",
+    "end": "2024-12-04T15:34:55.540Z",
+    "duration": 4642,
+    "testsRegistered": 2,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 1,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "ab2f5585-69b1-4dcf-8efe-ef031f7e4c90",
+      "title": "",
+      "fullFile": "cypress\\e2e\\subindoTestesOctane.cy.js",
+      "file": "cypress\\e2e\\subindoTestesOctane.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7b65873a-f033-4725-9741-829b86ffdab9",
+          "title": "Teste de Seleção de Novo Board Salvo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "14751ab6-deae-49e5-ada6-90c589ad6668",
+              "title": "Selecionando board de teste",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve selecionar um board salvo e realizar as interações subsequentes",
+                  "fullTitle": "Teste de Seleção de Novo Board Salvo Selecionando board de teste Deve selecionar um board salvo e realizar as interações subsequentes",
+                  "timedOut": null,
+                  "duration": 4591,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.selecionarBoardDeTeste();",
+                  "err": {
+                    "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#inputUsername`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Teste de Seleção de Novo Bo...`",
+                    "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#inputUsername`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Teste de Seleção de Novo Bo...`\n    at Context.eval (webpack://automacao-e2e-cypress/./cypress/support/commands.js:7:5)",
+                    "diff": null
+                  },
+                  "uuid": "9907fe55-f2b9-4278-9766-562904bd0bda",
+                  "parentUUID": "14751ab6-deae-49e5-ada6-90c589ad6668",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "9907fe55-f2b9-4278-9766-562904bd0bda"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 4591,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "84148011-1973-4c38-bbfc-89995ec11253",
+              "title": "Enviar Casos de Teste para ALM Octane",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Lê o arquivo JSON e envia os casos para o ALM Octane",
+                  "fullTitle": "Teste de Seleção de Novo Board Salvo Enviar Casos de Teste para ALM Octane Lê o arquivo JSON e envia os casos para o ALM Octane",
+                  "timedOut": null,
+                  "duration": 0,
+                  "state": "skipped",
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// Carregar o arquivo JSON com os casos de teste\ncy.fixture('test-cases.json').then(testCases => {\n  const feature = testCases.feature;\n  // URL da API do ALM Octane (substitua com a URL do seu servidor)\n  const octaneUrl = 'https://octane.bradesco.com.br:8443';\n  // Dados que serão enviados para o ALM Octane\n  const testCasesData = feature.scenarios.map(scenario => ({\n    name: scenario.name,\n    description: `${feature.description} - ${scenario.name}`,\n    steps: scenario.steps.map((step, index) => ({\n      action: step[('given', 'when', 'then')],\n      // 'given', 'when' ou 'then'\n      expected_result: step[index] // Aqui você pode mapear as expectativas para cada step\n    }))\n  }));\n  // Configurar as opções para a requisição\n  const config = {\n    headers: {\n      'Authorization': 'Bearer 4s8umXpV-QvTG8alvfWpH8brYR2P8tWDHo18VbQsOFM8x9uLlpFK2OdTmC1NYIhPZ4M42urV9vSSKof1mi5hkkGJh2-7491R-3Op0wJAPTqBnht6gR9lxtg7Cfez9hy4myDnQmXp0fDZXhfid2Fn6icwfJJP4i8epLKZRlEr3QfbBcVgzJoTP2a7Cu6HmxexCr1w8fyNEehbPKA1WYOtbcV4vJ_mYGWMkcssmximvhn4wf8jCrw8p-8Mr23NBabNh-hF8j6srnXsli3YInGkr11wUpjDY1M0SDvFj5yqHbyPjMiQicvfvpGS_EiEdlFAWB3rhsZ3zVb0AHV9qZ2XvmmiI_W8504gAxPHHlBLEoc.',\n      // Substitua pelo seu token de autorização\n      'Content-Type': 'application/json'\n    }\n  };\n  // Enviar os casos de teste para o ALM Octane\n  testCasesData.forEach(testCase => {\n    (0, _axios.post)(octaneUrl, testCase, config).then(response => {\n      cy.log(`Caso de teste '${testCase.name}' enviado com sucesso para o ALM Octane`);\n    }).catch(error => {\n      cy.log(`Erro ao enviar o caso de teste '${testCase.name}': ${error.message}`);\n    });\n  });\n});",
+                  "err": {},
+                  "uuid": "d9fecca0-5df5-471e-aa6c-4f2b1bdab0d8",
+                  "parentUUID": null,
+                  "isHook": false,
+                  "skipped": true
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [
+                "d9fecca0-5df5-471e-aa6c-4f2b1bdab0d8"
+              ],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

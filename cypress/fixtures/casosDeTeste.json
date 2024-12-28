@@ -1,0 +1,37 @@
+{
+    "feature": {
+      "name": "Login de Usuário",
+      "description": "Esse recurso permite que um usuário faça login no sistema",
+      "scenarios": [
+        {
+          "name": "Login com credenciais válidas",
+          "steps": [
+            {
+              "given": "o usuário está na página de login"
+            },
+            {
+              "when": "o usuário entra com um nome de usuário e senha válidos"
+            },
+            {
+              "then": "o sistema deve redirecionar o usuário para a página inicial"
+            }
+          ]
+        },
+        {
+          "name": "Login com credenciais inválidas",
+          "steps": [
+            {
+              "given": "o usuário está na página de login"
+            },
+            {
+              "when": "o usuário entra com um nome de usuário e senha inválidos"
+            },
+            {
+              "then": "o sistema deve exibir uma mensagem de erro"
+            }
+          ]
+        }
+      ]
+    }
+  }
+  
